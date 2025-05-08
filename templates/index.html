@@ -80,8 +80,8 @@
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-      gap: 1.2em;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1.5fr));
+      gap: 2em;
       justify-content: center;
       width: 100%;
       max-width: 1000px;
@@ -89,7 +89,7 @@
 
     .profile {
       width: 180px;
-      height: 240px; /* Increased from 200px */
+      height: 230px; /* Increased from 200px */
       background: #1c1c1c;
       border: 2px solid #333;
       border-radius: 10px;
@@ -112,7 +112,7 @@
     }
 
     .profile form {
-      margin: 0.2em 0;
+      margin: 0;
     }
 
     .profile button {
@@ -158,6 +158,7 @@
     }
   </style>
 </head>
+
 <body>
   <h1>Mouse Controller</h1>
   <p style="margin-top: 0; font-size: 1.5em; color: #ffffff;">By Will :)</p>
@@ -213,6 +214,20 @@
         </form>
       </div>
     {% endfor %}
+    
   </div>
 </body>
+<footer style="
+margin-top: 2em;
+padding: 1em;
+background-color: #0e0e0e; 
+color: #888;
+font-size: 0.9em;
+width: 100%;
+text-align: center;
+border-top: 1px solid #222;
+">
+Open Source on GitHub (https://github.com/Krosight/mousecontroller)
+</footer>
+
 </html>
