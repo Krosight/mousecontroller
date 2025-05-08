@@ -2,7 +2,7 @@
 
 by Will :)
 -
- a Python-based tool designed for precision mouse movement automation, ideal for use in scenarios such as recoil control in FPS games (**Siege**, CSGO, ETC) or custom mouse behaviors for accessibility.
+ a Python-based tool designed for precision mouse movement automation, ideal for use in scenarios such as recoil control in FPS games (**Siege**, CSGO, Etc.) or custom mouse behaviors for accessibility.
   Real-time mouse movement controlled by holding the left mouse button.
 
    - Per-profile X and Y movement speeds with independent acceleration curves.
