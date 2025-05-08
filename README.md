@@ -32,9 +32,9 @@ Requirements
       pip install -r requirements.txt
 
 How to Use
-
+- Download .zip
+- Install Requirements ^^^^^^^
 - Run *run.bat*
-
 - Navigate to http://localhost:5000/
 - X and Y represent the speed
 - XA and YA represent the acceleration
