@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mouse Controller</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #121212;
+      color: #f0f0f0;
+      margin: 0;
+      padding: 2em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      color: #ffffff;
+      margin-bottom: 0.5em;
+    }
+
+    .nav-buttons {
+      display: flex;
+      gap: 1em;
+      margin-bottom: 1.5em;
+    }
+
+    .nav-buttons button {
+      background-color: #1f1f1f;
+      color: #fff;
+      border: 1px solid #444;
+      padding: 0.5em 1.2em;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .nav-buttons button:hover {
+      background-color: #ffffff;
+      color: #000;
+      transform: scale(1.05);
+    }
+
+    .new-profile {
+      margin-bottom: 2em;
+      padding: 1em;
+      border: 1px solid #333;
+      border-radius: 8px;
+      background: #1e1e1e;
+      width: 300px;
+      text-align: center;
+    }
+
+    .new-profile input[type="text"] {
+      width: 150px;
+      background: #2a2a2a;
+      color: #fff;
+      border: 1px solid #444;
+      border-radius: 4px;
+      padding: 0.4em;
+      margin-top: 0.5em;
+    }
+
+    .new-profile button {
+      margin-top: 0.8em;
+      background-color: #333;
+      color: #fff;
+      border: 1px solid #555;
+      padding: 0.4em 1em;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    .new-profile button:hover {
+      background-color: #00ffc3;
+      color: #000;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 1.2em;
+      justify-content: center;
+      width: 100%;
+      max-width: 1000px;
+    }
+
+    .profile {
+      width: 180px;
+      height: 240px; /* Increased from 200px */
+      background: #1c1c1c;
+      border: 2px solid #333;
+      border-radius: 10px;
+      padding: 1em;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.3s ease, background-color 0.3s ease;
+      font-size: 0.85em;
+    }
+
+    .profile:hover {
+      transform: scale(1.05);
+      background-color: #232323;
+    }
+
+    .profile.active {
+      border-color: #00ffc3;
+      background-color: #003f35;
+    }
+
+    .profile form {
+      margin: 0.2em 0;
+    }
+
+    .profile button {
+      background-color: #333;
+      color: #fff;
+      border: 1px solid #555;
+      border-radius: 4px;
+      padding: 0.3em;
+      font-size: 0.9em;
+      width: 100%;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    .profile button:hover {
+      background-color: #00ffc3;
+      color: #000;
+    }
+
+    .profile input[type="number"] {
+      width: 60px;
+      background: #2a2a2a;
+      color: #fff;
+      border: 1px solid #444;
+      border-radius: 3px;
+      padding: 0.2em;
+      font-size: 0.85em;
+    }
+
+    label {
+      font-size: 0.85em;
+      margin-right: 0.2em;
+    }
+
+    .delete-button {
+      color: #ff4b4b !important;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .delete-button:hover {
+      background-color: #ff4b4b !important;
+      color: #000 !important;
+    }
+  </style>
+</head>
+<body>
+  <h1>Mouse Controller</h1>
+  <p style="margin-top: 0; font-size: 1.5em; color: #ffffff;">By Will :)</p>
+  <div class="nav-buttons">
+    <button onclick="window.location.href='/profiles'">Offense</button>
+    <button onclick="window.location.href='/profiles2'">Defense</button>
+  </div>
+
+  <div class="new-profile">
+    <form method="POST" action="/create">
+      <input type="hidden" name="page" value="{{ current_page }}">
+      <label>New Profile:</label><br>
+      <input type="text" name="new_profile" required>
+      <br>
+      <button type="submit">Create Profile</button>
+    </form>
+  </div>
+
+  <div class="grid">
+    {% for name, data in profiles.items() %}
+      <div class="profile {% if name == active %}active{% endif %}">
+        <form method="POST" action="/select" style="margin-bottom: 0.4em;">
+          <input type="hidden" name="profile" value="{{ name }}">
+          <button type="submit"><strong>{{ name }}</strong></button>
+        </form>
+
+        <form method="POST" action="/update" style="display: flex; flex-direction: column; gap: 0.3em;">
+          <input type="hidden" name="profile" value="{{ name }}">
+
+          <div style="display: flex; justify-content: space-between;">
+            <label for="x-{{ name }}">X:</label>
+            <input id="x-{{ name }}" type="number" name="x" value="{{ data.x }}" step="0.01">
+          </div>
+          <div style="display: flex; justify-content: space-between;">
+            <label for="y-{{ name }}">Y:</label>
+            <input id="y-{{ name }}" type="number" name="y" value="{{ data.y }}" step="0.01">
+          </div>
+          <div style="display: flex; justify-content: space-between;">
+            <label for="ax-{{ name }}">AX:</label>
+            <input id="ax-{{ name }}" type="number" name="accel_x" value="{{ data.accel_x or 0.5 }}" step="0.001" min="0" max="5">
+          </div>
+          <div style="display: flex; justify-content: space-between;">
+            <label for="ay-{{ name }}">AY:</label>
+            <input id="ay-{{ name }}" type="number" name="accel_y" value="{{ data.accel_y or 0.5 }}" step="0.001" min="0" max="5">
+          </div>
+
+          <button type="submit">Update</button>
+        </form>
+
+        <form method="POST" action="/delete" onsubmit="return confirm('Delete profile {{ name }}?');" style="margin-top: 0.3em;">
+          <input type="hidden" name="profile" value="{{ name }}">
+          <button class="delete-button" type="submit">Delete</button>
+        </form>
+      </div>
+    {% endfor %}
+  </div>
+</body>
+</html>

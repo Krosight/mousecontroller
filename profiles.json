@@ -1,0 +1,17 @@
+{
+    "Ash": {
+        "x": -9.35,
+        "y": 28.55,
+        "interval": 0.001,
+        "page": 1,
+        "acceleration": 0.055,
+        "accel_x": 0.001,
+        "accel_y": 0.21
+    },
+    "Fenrir": {
+        "x": 0,
+        "y": 0,
+        "interval": 0.001,
+        "page": 2
+    }
+}
