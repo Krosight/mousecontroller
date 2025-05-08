@@ -42,6 +42,9 @@ How to Use
 # Screenshots
 ![image](https://github.com/user-attachments/assets/081f5eb3-ac80-4367-9cef-6b2b5aab9200)
 
+![image](https://github.com/user-attachments/assets/0a011354-5d90-478b-9674-6df3d132789c)
+
+
 
 Credits
 -
