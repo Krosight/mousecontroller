@@ -34,7 +34,7 @@ Requirements
 How to Use
 - Download .zip
 - Install Requirements ^^^^^^^
-- Run *run.bat*
+- Run *run.bat* (two cmd prompts will open, one is the mouse script and the other is the web server)
 - Navigate to http://localhost:5000/
 - X and Y represent the speed
 - XA and YA represent the acceleration
